@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopiku Reservation Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('your-cooking-image-url.jpg') no-repeat center center fixed; /* Set your cooking image URL */
+            background-size: cover; /* Cover the entire background */
+            font-family: Arial, sans-serif;
+            position: relative;
+            padding: 20px;
+        }
+        
+        body::before {
+            content: "Kopiku";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10rem;
+            color: rgba(255, 255, 255, 0.03);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Additional Kopiku watermarks */
+        .watermark {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.05);
+            font-size: 10rem;
+            white-space: nowrap;
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
+        }
+
+        .watermark:nth-child(2) { top: 10%; left: 10%; }
+        .watermark:nth-child(3) { top: 80%; left: 70%; }
+        .watermark:nth-child(4) { top: 20%; left: 80%; }
+        .watermark:nth-child(5) { top: 70%; left: 20%; }
+
+        .form-container {
+            background-color: rgba(51, 51, 51, 0.8); /* Slightly transparent background */
+            padding: 30px 35px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+            color: #fff;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+        
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            background-color: #444;
+            color: #eee;
+            font-size: 1rem;
+        }
+        
+        form input::placeholder, form textarea::placeholder {
+            color: #999;
+        }
+        
+        form input:focus, form textarea:focus {
+            border-color: #00adb5;
+            outline: none;
+            background-color: #555;
+        }
+        
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #00adb5;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #007a85;
+            transform: scale(1.05);
+        }
+
+        /* Popup Styles */
+        .popup {
+            position: fixed;
+            bottom: -100px; /* Start hidden below the viewport */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00adb5;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.5s, bottom 0.5s;
+            z-index: 100;
+        }
+        
+        .popup.show {
+            bottom: 20px; /* Slide up into view */
+            opacity: 1; /* Fade in */
+        }
+
+        @media (max-width: 768px) {
+            body::before {
+                font-size: 6rem;
+            }
+        
+            h2 {
+                font-size: 1.5rem;
+            }
+        
+            .form-container {
+                padding: 25px 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body::before {
+                font-size: 4rem;
+            }
+        
+            h2 {
+                font-size: 1.2rem;
+            }
+        
+            form input, form textarea, button[type="submit"] {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        
+            .form-container {
+                padding: 20px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="watermark">Kopiku</div>
+    <div class="watermark">Kopiku</div>
+    <div class="watermark">Kopiku</div>
+    <div class="watermark">Kopiku</div>
+    <div class="watermark">Kopiku</div>
+
+    <div class="form-container">
+        <h2>Welcome to KOPIKU!</h2>
+        <form id="reservationForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            
+            <label for="mobile">Mobile Number:</label>
+            <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" placeholder="Enter any additional requests or messages here"></textarea>
+            
+            <button type="submit">Submit Reservation</button>
+        </form>
+    </div>
+
+    <div class="popup" id="successPopup">Reservation Submitted Successfully!</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("_xT291fly7wHkp4lc");
+        })();
+
+        // Form submission
+        document.getElementById("reservationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            emailjs.sendForm("service_lde66as", "template_ad1fl3f", this)
+                .then(function() {
+                    // Show the popup
+                    const popup = document.getElementById("successPopup");
+                    popup.classList.add("show");
+
+                    // Hide the popup after 3 seconds
+                    setTimeout(function() {
+                        popup.classList.remove("show");
+                    }, 3000);
+                }, function(error) {
+                    alert("Failed to send email. Error: " + JSON.stringify(error));
+                });
+        });
+    </script>
+</body>
+</html>
