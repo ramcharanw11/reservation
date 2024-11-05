@@ -5,172 +5,204 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kopiku Reservation Form</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: url('your-cooking-image-url.jpg') no-repeat center center fixed; /* Set your cooking image URL */
-            background-size: cover; /* Cover the entire background */
-            font-family: Arial, sans-serif;
-            position: relative;
-            padding: 20px;
-        }
-        
-        body::before {
-            content: "Kopiku";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 10rem;
-            color: rgba(255, 255, 255, 0.03);
-            z-index: 0;
-            pointer-events: none;
-        }
+      * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        /* Additional Kopiku watermarks */
-        .watermark {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.05);
-            font-size: 10rem;
-            white-space: nowrap;
-            pointer-events: none;
-            user-select: none;
-            z-index: 0;
-        }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #1c1c1c; /* Dark background */
+    font-family: Arial, sans-serif;
+    position: relative;
+    padding: 20px;
+}
 
-        .watermark:nth-child(2) { top: 10%; left: 10%; }
-        .watermark:nth-child(3) { top: 80%; left: 70%; }
-        .watermark:nth-child(4) { top: 20%; left: 80%; }
-        .watermark:nth-child(5) { top: 70%; left: 20%; }
+body::before {
+    content: "Kopiku";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10rem;
+    color: rgba(255, 255, 255, 0.05); /* Subtle watermark effect */
+    z-index: 0;
+    pointer-events: none;
+}
 
-        .form-container {
-            background-color: rgba(51, 51, 51, 0.8); /* Slightly transparent background */
-            padding: 30px 35px;
-            border-radius: 10px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            z-index: 1;
-            position: relative;
-            color: #fff;
-        }
-        
-        h2 {
-            margin-bottom: 20px;
-            color: #fff;
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-        
-        form label {
-            display: block;
-            text-align: left;
-            margin-bottom: 5px;
-            color: #bbb;
-            font-size: 0.9rem;
-        }
-        
-        form input, form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #555;
-            border-radius: 8px;
-            background-color: #444;
-            color: #eee;
-            font-size: 1rem;
-        }
-        
-        form input::placeholder, form textarea::placeholder {
-            color: #999;
-        }
-        
-        form input:focus, form textarea:focus {
-            border-color: #00adb5;
-            outline: none;
-            background-color: #555;
-        }
-        
-        button[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            background-color: #00adb5;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-        }
-        
-        button[type="submit"]:hover {
-            background-color: #007a85;
-            transform: scale(1.05);
-        }
+/* Additional Kopiku watermarks */
+.watermark {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.05);
+    font-size: 10rem;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
 
-        /* Popup Styles */
-        .popup {
-            position: fixed;
-            bottom: -100px; /* Start hidden below the viewport */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #00adb5;
-            color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transition: opacity 0.5s, bottom 0.5s;
-            z-index: 100;
-        }
-        
-        .popup.show {
-            bottom: 20px; /* Slide up into view */
-            opacity: 1; /* Fade in */
-        }
+.watermark:nth-child(2) { top: 10%; left: 10%; }
+.watermark:nth-child(3) { top: 80%; left: 70%; }
+.watermark:nth-child(4) { top: 20%; left: 80%; }
+.watermark:nth-child(5) { top: 70%; left: 20%; }
 
-        @media (max-width: 768px) {
-            body::before {
-                font-size: 6rem;
-            }
-        
-            h2 {
-                font-size: 1.5rem;
-            }
-        
-            .form-container {
-                padding: 25px 30px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body::before {
-                font-size: 4rem;
-            }
-        
-            h2 {
-                font-size: 1.2rem;
-            }
-        
-            form input, form textarea, button[type="submit"] {
-                font-size: 0.9rem;
-                padding: 10px;
-            }
-        
-            .form-container {
-                padding: 20px 25px;
-            }
-        }
+.form-container {
+    background-color: rgba(30, 30, 30, 0.9); /* Dark grey background */
+    padding: 30px 35px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Darker shadow */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    color: #fff;
+    opacity: 0; /* Start hidden for fade-in effect */
+    animation: fadeIn 0.5s forwards; /* Fade-in animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Slide in from above */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #bbb; /* Light grey for labels */
+    font-size: 0.9rem;
+}
+
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #444; /* Darker border */
+    border-radius: 8px;
+    background-color: #222; /* Dark input background */
+    color: #eee; /* Light text */
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s; /* Smooth transitions */
+}
+
+form input::placeholder, form textarea::placeholder {
+    color: #888; /* Lighter grey for placeholder text */
+}
+
+form input:focus, form textarea:focus {
+    border-color: #00adb5; /* Teal border on focus */
+    outline: none;
+    background-color: #333; /* Slightly lighter grey on focus */
+    animation: inputFocus 0.3s; /* Animation on focus */
+}
+
+@keyframes inputFocus {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.02); /* Slightly scale up */
+    }
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #00adb5; /* Teal background */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    animation: bounce 1s infinite alternate; /* Bounce animation */
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-5px); /* Bounce effect */
+    }
+}
+
+button[type="submit"]:hover {
+    background-color: #007a85; /* Darker teal on hover */
+}
+
+.popup {
+    position: fixed;
+    bottom: -100px; /* Start hidden below the viewport */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00adb5; /* Teal background for popup */
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s;
+    z-index: 100;
+}
+
+.popup.show {
+    bottom: 20px; /* Slide up into view */
+    opacity: 1; /* Fade in */
+}
+
+@media (max-width: 768px) {
+    body::before {
+        font-size: 6rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-container {
+        padding: 25px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    body::before {
+        font-size: 4rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    form input, form textarea, button[type="submit"] {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .form-container {
+        padding: 20px 25px;
+    }
+}
+
     </style>
 </head>
 <body>
